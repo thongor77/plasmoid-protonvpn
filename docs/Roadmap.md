@@ -81,10 +81,16 @@ Proton qui n'est pas encore connecté) et l'écriture réelle de
 
 ## Phase 5 — Packaging, install, tests
 
-- [ ] Choisir l'Id définitif du paquet (actuellement `local.protonvpn`,
-      placeholder — cf. `package/metadata.json`) avant toute publication
+Diffusion décidée le 2026-09-06 : Store KDE (store.kde.org), avec un dépôt
+GitHub dédié comme source/Website.
+
+- [x] Id définitif choisi et appliqué : `com.github.thongor77.protonvpn`
+      (`package/metadata.json` — `Authors`/`Website`/`Bugs` renseignés aussi)
+- [x] Dépôt GitHub créé : https://github.com/thongor77/plasmoid-protonvpn
 - [ ] Script d'installation (`kpackagetool6 --install`)
 - [ ] Reprise des tests upstream (`tests/`) adaptés au nouveau layout
 - [ ] `plasmoidviewer` (installer `plasma-sdk`) pour test visuel manuel
 - [x] LICENSE (MIT, crédits upstream)
-- [ ] Publication (dépôt GitHub dédié) si souhaité
+- [ ] Soumission sur store.kde.org (upload manuel via leur formulaire web —
+      pas automatisable depuis ici) : captures dans `screenshot/` déjà
+      disponibles à joindre à la fiche

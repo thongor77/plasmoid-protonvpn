@@ -3,16 +3,18 @@
     "KPlugin": {
         "Authors": [
             {
-                "Name": "Ported from iamfitsum/omarchy-proton-vpn"
+                "Name": "thongor77"
             }
         ],
+        "Bugs": "https://github.com/thongor77/plasmoid-protonvpn/issues",
         "Category": "Network",
-        "Description": "Proton VPN control panel: status, connect/disconnect, notifications. Ported from the Omarchy Quickshell widget.",
+        "Description": "Proton VPN control panel: status, connect/disconnect, country/server picking, world map, traffic monitor, and Kill Switch/NetShield/port forwarding/Always On/split tunneling via a Configure dialog. Ported from the Omarchy Quickshell widget (iamfitsum/omarchy-proton-vpn), driven by the official protonvpn CLI.",
         "Icon": "network-vpn",
-        "Id": "local.protonvpn",
+        "Id": "com.github.thongor77.protonvpn",
         "License": "MIT",
         "Name": "Proton VPN",
-        "Version": "0.1.0"
+        "Version": "0.1.0",
+        "Website": "https://github.com/thongor77/plasmoid-protonvpn"
     },
     "X-Plasma-API-Minimum-Version": "6.0",
     "X-Plasma-MainScript": "ui/main.qml"

@@ -28,15 +28,18 @@ Item {
   // Reduced from 39 when Kill Switch/NetShield/port forwarding/Always
   // On/split tunneling all moved to the config dialog and the Connect/
   // Change server buttons were replaced by the header switch — see
-  // docs/Decisions-Techniques.md. Tuned against the CONNECTED state,
-  // which is the tallest one (server/location/load/protocol block +
-  // traffic graph + session line, on top of everything the disconnected
-  // state already has) — measured live at 404x692 this leaves ~4
-  // country/server rows visible below the search field before scrolling.
-  // Low-risk to retune further: the only element that absorbs any slack
-  // is that scrolling list, which just shows more or fewer rows before it
-  // needs scrolling, never clips — the fixed rows above it (bigger once
-  // connected) are what actually need the headroom.
+  // docs/Decisions-Techniques.md.
+  //
+  // Two different constants, not one: the CONNECTED state has a lot more
+  // fixed content above the scroller (server/location/load/protocol block,
+  // traffic graph, session line) than disconnected, and — confirmed live
+  // across two different machines on 2026-09-06 — that gap isn't a fixed
+  // number of pixels/gridUnits even at the same Kirigami.Units.gridUnit
+  // value, so a single compromise height either wastes scroller room
+  // disconnected or leaves none at all connected, depending on the
+  // machine. Binding this to `vpn.connected` picks the right one live as
+  // the popup is already open, no reopen needed (unlike a code/deploy
+  // change, this is just an ordinary reactive QML binding).
   //
   // IMPORTANT when retuning:
   // - An already-placed widget instance does not pick up an
@@ -49,7 +52,7 @@ Item {
   //   on-screen size instead, temporarily add a Controls.Label bound to
   //   root.width/root.height/scroller.height and read it off a
   //   screenshot.
-  implicitHeight: Kirigami.Units.gridUnit * 30
+  implicitHeight: Kirigami.Units.gridUnit * (root.service && root.service.connected ? 32 : 23)
   // Locked to implicit size rather than left resizable: Plasma otherwise
   // lets the user drag the popup to whatever size they like and then
   // remembers that per-instance, so an existing widget doesn't pick up a

@@ -24,7 +24,7 @@ kpackagetool6 --type Plasma/Applet --install package
 ```
 
 **Important : le paquet installé est une copie, pas un lien symbolique.**
-`~/.local/share/plasma/plasmoids/local.protonvpn/` est indépendant de ce
+`~/.local/share/plasma/plasmoids/com.github.thongor77.protonvpn/` est indépendant de ce
 dépôt — éditer les fichiers ici n'a aucun effet tant que le paquet n'est pas
 réinstallé. Après toute modification sous `package/`, il faut lancer :
 

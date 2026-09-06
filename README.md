@@ -1,5 +1,7 @@
 # Proton VPN Plasmoid
 
+Repository: https://github.com/thongor77/plasmoid-protonvpn
+
 A native KDE Plasma 6 widget for Proton VPN: connection status, country/city
 picker, Kill Switch, NetShield, Always On, split tunneling, port forwarding,
 and traffic monitoring — driven by the official `protonvpn` CLI.
@@ -43,6 +45,9 @@ kpackagetool6 --type Plasma/Applet --install package
 # after edits:
 kpackagetool6 --type Plasma/Applet --upgrade package
 ```
+
+This installs the applet as `com.github.thongor77.protonvpn` (see
+`package/metadata.json`).
 
 Then add the "Proton VPN" widget from the panel's widget picker.
 
