@@ -90,7 +90,10 @@ GitHub dédié comme source/Website.
 - [x] Script d'installation (`install.sh` — install/upgrade auto-détecté
       via `kpackagetool6 --show`, vérifie les dépendances externes sans en
       installer aucune)
-- [ ] Reprise des tests upstream (`tests/`) adaptés au nouveau layout
+- [x] Reprise des tests upstream (`tests/`) adaptés au nouveau layout —
+      35 tests, mêmes corps que `iamfitsum/omarchy-proton-vpn`, seul le
+      `sys.path.insert` change (`package/contents/scripts/` au lieu de la
+      racine du dépôt) ; `python3 -m unittest discover -s tests`
 - [ ] `plasmoidviewer` (installer `plasma-sdk`) pour test visuel manuel
 - [x] LICENSE (MIT, crédits upstream)
 - [ ] Soumission sur store.kde.org (upload manuel via leur formulaire web —

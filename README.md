@@ -59,6 +59,20 @@ Development package lives in `package/`. To test locally once
 plasmoidviewer -a package
 ```
 
+## Tests
+
+`tests/` covers the pure-logic parts of the Python scripts (server/city
+filtering and shuffling, split-tunnel desktop-entry parsing, keyring
+secret folding) — no CLI, network, or display needed:
+
+```bash
+python3 -m unittest discover -s tests
+```
+
+Ported from upstream's own `tests/` (same test bodies; only the import
+path changes, since these scripts live under `package/contents/scripts/`
+here instead of the repo root).
+
 ## Credits
 
 Ported from [omarchy-proton-vpn](https://github.com/iamfitsum/omarchy-proton-vpn)
