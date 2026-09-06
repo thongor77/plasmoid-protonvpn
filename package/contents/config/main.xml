@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kcfg xmlns="http://www.kde.org/standards/kcfg/1.0"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0
+                          http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
+  <kcfgfile name=""/>
+
+  <!-- Not persisted settings in the usual sense: the CLI is the real
+       source of truth (see ui/main.qml's Binding/Connections pair). This
+       group only exists because the config dialog runs in its own QML
+       engine and can't reach the popup's live Service instance directly —
+       it's the two-way mailbox Plasma provides for that. -->
+  <group name="Protections">
+    <entry name="killSwitch" type="Bool">
+      <default>false</default>
+    </entry>
+    <entry name="netShield" type="Bool">
+      <default>false</default>
+    </entry>
+    <entry name="portForwarding" type="Bool">
+      <default>false</default>
+    </entry>
+    <entry name="alwaysOn" type="Bool">
+      <default>false</default>
+    </entry>
+  </group>
+
+  <group name="SplitTunneling">
+    <entry name="splitEnabled" type="Bool">
+      <default>false</default>
+    </entry>
+    <entry name="splitMode" type="String">
+      <default>exclude</default>
+    </entry>
+    <entry name="splitApps" type="StringList"/>
+    <!-- Read-only from the config page's side (never toggled there): mirrors
+         Service's splitAvailable/splitBlocked/installedApps* so the page can
+         show the right message/gating without reaching the live Service. -->
+    <entry name="splitAvailable" type="Bool">
+      <default>false</default>
+    </entry>
+    <entry name="splitBlocked" type="Bool">
+      <default>true</default>
+    </entry>
+    <entry name="installedAppsJson" type="String">
+      <default>[]</default>
+    </entry>
+    <entry name="installedAppsLoaded" type="Bool">
+      <default>false</default>
+    </entry>
+  </group>
+</kcfg>
