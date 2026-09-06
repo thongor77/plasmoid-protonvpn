@@ -20,24 +20,37 @@ En développement — portage initial en cours. Voir `docs/Roadmap.md`.
 
 ```bash
 plasmoidviewer -a package        # nécessite plasma-sdk (non installé au 2026-09-05)
-kpackagetool6 --type Plasma/Applet --install package
+./install.sh                     # install ou upgrade auto-détecté, voir README.md
 ```
 
 **Important : le paquet installé est une copie, pas un lien symbolique.**
 `~/.local/share/plasma/plasmoids/com.github.thongor77.protonvpn/` est indépendant de ce
 dépôt — éditer les fichiers ici n'a aucun effet tant que le paquet n'est pas
-réinstallé. Après toute modification sous `package/`, il faut lancer :
+réinstallé. Après toute modification sous `package/`, il faut relancer
+`./install.sh` (ou `kpackagetool6 --type Plasma/Applet --upgrade package`),
+**puis** :
 
 ```bash
-kpackagetool6 --type Plasma/Applet --upgrade package
+rm -rf ~/.cache/plasmashell/qmlcache
 systemctl --user restart plasma-plasmashell.service
 ```
 
-(`--upgrade`, pas `--install`, une fois le paquet déjà présent). Oublier
-cette étape et se contenter de recharger plasmashell fait tourner l'ancien
-code sans le moindre message d'erreur — piège vécu le 2026-09-05, où un bug
-a été diagnostiqué à tort comme non corrigé alors que le correctif n'avait
-simplement jamais été déployé.
+Trois pièges vécus, dans l'ordre où ils mordent :
+
+1. Oublier `--upgrade`/`install.sh` et se contenter de recharger plasmashell
+   fait tourner l'ancien code sans le moindre message d'erreur — piège vécu
+   le 2026-09-05, où un bug a été diagnostiqué à tort comme non corrigé alors
+   que le correctif n'avait simplement jamais été déployé.
+2. `~/.cache/plasmashell/qmlcache` peut servir du bytecode QML compilé
+   périmé même après un `--upgrade` + `restart` — confirmé le 2026-09-06.
+   Le vider avant le restart doit faire partie du geste habituel, pas
+   seulement quand un changement semble ne pas s'appliquer.
+3. Un changement touchant `implicitWidth`/`implicitHeight` du popup
+   n'est PAS repris par une instance de widget déjà placée sur un panneau,
+   même après avoir vidé le cache et redémarré plasmashell — confirmé le
+   2026-09-06. Il faut retirer le widget du panneau et le remettre pour voir
+   la nouvelle taille. Les autres changements de code (logique, contenu) se
+   rechargent normalement sans ce geste.
 
 ## Architecture
 

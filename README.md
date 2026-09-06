@@ -29,16 +29,20 @@ next.
   persistence
 - Official `protonvpn` CLI + `nmcli` as the actual VPN backend
 
-## Run / install
-
-Development package lives in `package/`. To test locally once
-`plasma-sdk` is installed (`sudo pacman -S plasma-sdk`):
+## Install
 
 ```bash
-plasmoidviewer -a package
+./install.sh
 ```
 
-To install into the user's Plasma session:
+Installs (or upgrades, if already present) the applet as
+`com.github.thongor77.protonvpn` (see `package/metadata.json`) into your
+user's Plasma session, and warns about any missing external dependency
+(`protonvpn`, `python3`, `nmcli`, `busctl`, `konsole`/`xterm`, `wl-copy`)
+without installing anything itself. Then add the "Proton VPN" widget from
+the panel's widget picker.
+
+Equivalent by hand:
 
 ```bash
 kpackagetool6 --type Plasma/Applet --install package
@@ -46,10 +50,14 @@ kpackagetool6 --type Plasma/Applet --install package
 kpackagetool6 --type Plasma/Applet --upgrade package
 ```
 
-This installs the applet as `com.github.thongor77.protonvpn` (see
-`package/metadata.json`).
+## Development
 
-Then add the "Proton VPN" widget from the panel's widget picker.
+Development package lives in `package/`. To test locally once
+`plasma-sdk` is installed (`sudo pacman -S plasma-sdk`):
+
+```bash
+plasmoidviewer -a package
+```
 
 ## Credits
 
